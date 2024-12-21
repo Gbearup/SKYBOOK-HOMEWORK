@@ -1,111 +1,115 @@
-﻿<?php include_once "api/db.php";
+<?php include_once "api/db.php";
 
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     echo "請從登入頁登入<a href='index.php?do=login'>管理登入</a>";
     exit();
 }
-
-
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0068)?do=admin&redo=title -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-TW">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花草fei fei</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>卓越科技大學校園資訊系統</title>
+    <!-- 引入 Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJxv4s3QK+7b5k3yW2pE3oY5O92F5f5a0fHj9aVe2kEozFO0ggk3dyvB4jZ9" crossorigin="anonymous">
+
+    <!-- 自定義 CSS -->
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
 </head>
 
-<body>`
-    <div id="cover" style="display:none; ">
+<body>
+
+    <!-- 覆蓋層 (保留彈出功能) -->
+    <div id="cover" style="display:none;">
         <div id="coverr">
-            <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
-                onclick="cl(&#39;#cover&#39;)">X</a>
-            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;">
-
-			</div>
+            <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl('#cover')">X</a>
+            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
         </div>
     </div>
 
-    <div id="main">
-        <a title="<?=$Title->find(['sh'=>1])['text'];?>" href="index.php">
-            <div class="ti" style="background:url('./upload/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
-            <!--標題-->
-        </a>
-        <div id="ms">
-            <div id="lf" style="float:left;">
-                <div id="menuput" class="dbor">
-                    <!--主選單放此-->
-                    <span class="t botli">後台管理選單</span>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
-                        <div class="mainmu">
-                            網站標題管理 </div>
-                            
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
-                        <div class="mainmu">
-                            動態文字廣告管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
-                        <div class="mainmu">
-                            動畫圖片管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=image">
-                        <div class="mainmu">
-                            校園映象資料管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
-                        <div class="mainmu">
-                            進站總人數管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=bottom">
-                        <div class="mainmu">
-                            頁尾版權資料管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=news">
-                        <div class="mainmu">
-                            最新消息資料管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin">
-                        <div class="mainmu">
-                            管理者帳號管理 </div>
-                    </a>
-                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=menu">
-                        <div class="mainmu">
-                            選單管理 </div>
-                    </a>
-
-
-                </div>
-                <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :
-                    <?=$Total->find(1)['total'];?></span>
-                </div>
+    <!-- 主內容區域 -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 text-center">
+                <a title="<?= $Title->find(['sh' => 1])['text']; ?>" href="index.php">
+                    <div class="ti" style="height: 180px; background: url('./upload/<?= $Title->find(['sh' => 1])['img']; ?>') center/contain no-repeat;">
+                        <!-- 這裡可以加上文字或其他內容 -->
+                        
+                    </div>
+                </a>
             </div>
-            <?php
-				$do=$_GET['do']??'title';
-				$file="./backend/{$do}.php";
-
-				if(file_exists($file)){
-					include $file;
-				}else{
-					include "./backend/title.php";
-				}
-				?>
-
         </div>
-        <div style="clear:both;"></div>
-        <div
-            style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-            <span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom'];?></span>
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-9">
+
+                <h2 class="mb-4 ">後台管理選單</h2>
+                <!-- 使用 nav-tabs 類別來顯示水平選單 -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="?do=title">網站標題管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=ad">動態文字廣告管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=mvim">動畫圖片管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=image">校園映象資料管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=total">進站總人數管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=bottom">頁尾版權資料管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=news">最新消息資料管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=admin">管理者帳號管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?do=menu">選單管理</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 主要內容區域 -->
+            <div class="col-2"></div>
+            <div class="col-10">
+                <!-- 動態載入頁面 -->
+                <?php
+                $do = $_GET['do'] ?? 'title';
+                $file = "./backend/{$do}.php";
+                if (file_exists($file)) {
+                    include $file;
+                } else {
+                    include "./backend/title.php";
+                }
+                ?>
+            </div>
         </div>
+
+        <!-- 頁尾 -->
+        <footer class="alert alert-info text-center py-3 mt-4">
+            <span><?= $Bottom->find(1)['bottom']; ?></span>
+        </footer>
     </div>
 
+
+    <!-- 引入 Bootstrap 5 的 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ojm81gYbl6cQzMx/6RkW1nSKm6QxK5EIfyP7tXl3sVKgFd5aOoVK9WJ5OXG+dhly" crossorigin="anonymous"></script>
 </body>
 
 </html>

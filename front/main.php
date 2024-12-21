@@ -1,97 +1,50 @@
-<div class="di"
-    style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
-    <marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
-<?php
-    $ads=$Ad->all(['sh'=>1]);
-    foreach($ads as $ad){
-        echo $ad['text'];
-        //echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-        echo str_repeat("&nbsp;",4);
-    }
-?>
-    </marquee>
-    <div style="height:32px; display:block;"></div>
-    <!--正中央-->
-
-    <div style="width:100%; padding:2px; height:290px;">
-        <div id="mwww" loop="true" style="width:100%; height:100%;">
-            <div style="width:99%; height:100%; position:relative;" class="cent">
-                沒有資料
+<div class="container-fluid">
+    <div class="row">
+        <!-- 右側最新消息區，佔50%寬度 -->
+        <div class="col-md-6">
+            <!-- 增加容器的高度並加大內邊距，調整區域大小 -->
+            <div class="p-4 mt-4" style="background-color: #f8f9fa; border-radius: 8px; position:relative; height: 300px;">
+                <!-- 標題部分，文字稍微加大 -->
+                <h4 class="font-weight-bold">最新消息區
+                    <?php
+                    if ($News->count(['sh' => 1]) > 5) {
+                        echo "<a href='index.php?do=news' class='float-right text-primary' style='font-size: 16px;'>";
+                        echo "More...";
+                        echo "</a>";
+                    }
+                    ?>
+                </h4>
+                <!-- 內容列表 -->
+                <ul class="list-unstyled">
+                    <?php
+                    $all_news = $News->all(['sh' => 1], " limit 5");
+                    foreach ($all_news as $n) {
+                        echo "<li class='ssaa mb-3'>";
+                        echo "<span class='text-dark' style='font-size: 16px;'>" . mb_substr($n['text'], 0, 30) . "</span>";
+                        echo "<span class='all' style='display:none'>" . $n['text'] . "</span>";
+                        echo "</li>";
+                    }
+                    ?>
+                </ul>
+                <!-- 顯示更多詳細內容的提示框 -->
+                <div id="altt"
+                    style="position: absolute; width: 350px; min-height: 120px; background-color: rgb(255, 255, 204); top: 50px; left: 130px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); border-radius: 5px;">
+                </div>
             </div>
+
+            <script>
+                $(".ssaa li").hover(
+                    function() {
+                        $("#altt").html("<pre>" + $(this).children(".all").html() + "</pre>");
+                        $("#altt").show();
+                    }
+                );
+                $(".ssaa li").mouseout(
+                    function() {
+                        $("#altt").hide();
+                    }
+                );
+            </script>
         </div>
-    </div>
-    <script>
-
-var lin = new Array();
-    <?php 
-    $mvs=$Mvim->all(['sh'=>1]);
-    foreach($mvs as $mv){
-        echo "lin.push('upload/{$mv['img']}');";
-    }
-
-    ?>
-var now = 0;
-if (lin.length > 1) {
-    setInterval("ww()", 3000);
-    //now = 1;
-}
-
-function ww() {
-   // console.log("HI");
-    $("#mwww").html("<embed loop=true src='" + lin[now] + "' style='width:99%; height:100%;'></embed>")
-    //$("#mwww").attr("src",lin[now])
-    now++;
-    if (now >= lin.length)
-        now = 0;
-}
-
-ww();
-</script>
-    <div
-        style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
-        <span class="t botli">最新消息區
-            <?php
-                if($News->count(['sh'=>1])>5){
-                    echo "<a href='index.php?do=news' style='float:right'>";
-                    echo "More...";
-                    echo "</a>";
-                }
-
-            ?>
-        </span>
-        <ul class="ssaa" style="list-style-type:decimal;">
-            <?php
-                $all_news=$News->all(['sh'=>1]," limit 5");
-                foreach($all_news as $n){
-                    echo "<li>";
-                    echo mb_substr($n['text'],0,20);
-                        echo "<span class='all' style='display:none'>";
-                        echo $n['text'];
-                        echo "</span>";
-                    echo "</li>";
-                }
-
-
-            ?>
-
-        </ul>
-        <div id="altt"
-            style="position: absolute; width: 350px; min-height: 100px; background-color: rgb(255, 255, 204); top: 50px; left: 130px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
-        </div>
-        <script>
-            
-        $(".ssaa li").hover(
-            function() {
-                
-                $("#altt").html("<pre>" + $(this).children(".all").html() + "</pre>")
-                $("#altt").show()
-            }
-        )
-        $(".ssaa li").mouseout(
-            function() {
-                $("#altt").hide()
-            }
-        )
-        </script>
     </div>
 </div>
