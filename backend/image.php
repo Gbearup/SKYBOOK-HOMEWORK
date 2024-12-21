@@ -3,12 +3,12 @@
     <!--正中央-->
     <?php include_once "logout.php";?>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">校園映像資料管理</p>
+        <p class="t cent botli">花藝商品展示圖片管理</p>
         <form method="post" action="./api/edit.php">
-            <table width="100%">
+            <table width="100%" class='cent'>
                 <tbody>
                     <tr class="yel">
-                        <td width="70%">網站標題</td>
+                        <td width="70%">花藝商品展示照片</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                         <td></td>
@@ -25,7 +25,7 @@
                     ?>
                     <tr>
                         <td>
-                            <img src="./upload/<?=$row['img'];?>" style="width:100px;height:68px;">    
+                            <img src="./upload/<?=$row['img'];?>" style="width:100px;height:68px;text-align:center">    
                         </td>
                         <td>
                             <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
@@ -74,7 +74,7 @@
                         <td width="200px">
                             <input type="button"
                                 onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?=$do;?>.php?table=<?=$do;?>&#39;)"
-                                value="新增校園映像圖片"></td>
+                                value="新增花藝商品展示圖片"></td>
                         <td class="cent">
                         <input type="hidden" name="table" value="<?=$do;?>">
                             <input type="submit" value="修改確定">

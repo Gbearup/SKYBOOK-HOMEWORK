@@ -11,6 +11,16 @@
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 引入 jQuery 和 Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -85,39 +95,109 @@
         </div>
     </div>
 
-    <!-- 花藝商品區  校園映象區 (橫向排列圖片) -->
+
+
+
     <div class="container-fluid">
         <div class="card mt-4 shadow-sm">
             <div class="card-header text-black" style="background-color: #f5deb3;">
-                花藝商品區
+                花藝商品展示區
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <button class="btn btn-secondary" onclick="pp(1)">
-                        <img src="./icon/left-arrow.jpg" alt="左翻" />
+                    <!-- 左翻按鈕 -->
+                    <button class="btn btn-secondary" id="prevBtn" onclick="moveLeft()">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
+
+                    <!-- 圖片區域 -->
                     <div class="d-flex overflow-hidden w-100">
-                        <div class="row" id="image-gallery">
+                        <div class="d-flex" id="image-gallery" style="transition: transform 0.3s ease-in-out;">
                             <?php
                             $imgs = $Image->all(['sh' => 1]);
                             foreach ($imgs as $idx => $img) {
-                                echo "<div class='col-4 mb-2' id='ssaa{$idx}' style='display:none;'>";
-                                // 使用 img-container class 來包裹圖片
-                                echo "<div class='img-container' style='width: 80%; height: 200px; overflow: hidden;'>";
-                                echo "<img src='./upload/{$img['img']}' class='img-fluid rounded' style='width: 100%; height: 100%; object-fit: cover; border:3px solid orange;' />";
+                                echo "<div class='image-item' id='ssaa{$idx}' style='flex: 0 0 12.5%; margin-right: 10px;'>";
+                                echo "<div class='img-container' style='width: 100%; height: 200px; overflow: hidden;'>";
+                                echo "<img src='./upload/{$img['img']}' class='img-fluid rounded' style='width: 100%; height: 100%; object-fit: cover; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);' />";
                                 echo "</div>";
                                 echo "</div>";
                             }
                             ?>
                         </div>
                     </div>
-                    <button class="btn btn-secondary" onclick="pp(2)">
-                        <img src="./icon/right-arrow.jpg" alt="右翻" />
+
+                    <!-- 右翻按鈕 -->
+                    <button class="btn btn-secondary" id="nextBtn" onclick="moveRight()">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    
+    <script>
+        let currentIndex = 0; // 當前顯示的圖片區域
+        const imagesPerPage = 8; // 每次顯示 8 張圖片
+        const imageWidth = 200; // 每張圖片的寬度
+        const imageSpacing = 10; // 圖片之間的間隙
+        const imageItems = document.querySelectorAll('.image-item'); // 所有圖片項目
+        const totalImages = imageItems.length; // 總圖片數量
+        const imageGallery = document.getElementById('image-gallery');
+
+        // 計算容器的總寬度，這裡使用 Math.floor 來確保寬度沒有浮動誤差
+        const containerWidth = Math.floor(imagesPerPage * (imageWidth + imageSpacing) - imageSpacing); // 確保容器寬度整除圖片的寬度
+
+        // 設定圖片容器寬度
+        imageGallery.style.width = `${containerWidth}px`;
+
+        // 更新箭頭顯示邏輯
+        function updateArrows() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= totalImages - imagesPerPage;
+        }
+
+        // 左箭頭移動
+        function moveLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateImagePosition();
+            }
+        }
+
+        // 右箭頭移動
+        function moveRight() {
+            if (currentIndex < totalImages - imagesPerPage) {
+                currentIndex++;
+                updateImagePosition();
+            }
+        }
+
+        // 更新圖片顯示位置
+        function updateImagePosition() {
+            // 計算平移量，確保是整數倍，避免浮動誤差
+            const offset = -currentIndex * (imageWidth + imageSpacing);
+            imageGallery.style.transform = `translateX(${offset}px)`; // 平移圖片區域
+
+            // 更新箭頭
+            updateArrows();
+        }
+
+        // 初始化顯示
+        updateArrows();
+    </script>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -185,9 +265,6 @@
         <span><?= $Bottom->find(1)['bottom']; ?></span>
     </footer>
     </div>
-
-    <!-- 引入 Bootstrap 5 的 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         var nowpage = 0,
