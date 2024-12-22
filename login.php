@@ -1,20 +1,21 @@
 <?php
 include_once "api/db.php"; // 引入資料庫連線檔案
 
-if (isset($_POST['acc'])) { // 如果有提交帳號
-    // 查詢帳號和密碼是否正確
-    $row = $Admin->find(['acc' => $_POST['acc'], 'pw' => $_POST['ps']]);
 
-    // 如果找到對應的帳號密碼
-    if (!empty($row)) {
-        // 登入成功，設定 session 來標記已登入
-        $_SESSION['login'] = 1;
-        header("Location: admin.php"); // 轉到管理頁面
-        exit();
-    } else {
-        // 如果帳號密碼錯誤，顯示錯誤訊息
-        echo "<script>alert('帳號或密碼錯誤')</script>";
-    }
+if (isset($_POST['acc'])) { // 如果有提交帳號
+	// 查詢帳號和密碼是否正確
+	$row = $Admin->find(['acc' => $_POST['acc'], 'pw' => $_POST['ps']]);
+
+	// 如果找到對應的帳號密碼
+	if (!empty($row)) {
+		// 登入成功，設定 session 來標記已登入
+		$_SESSION['login'] = 1;
+		header("Location: admin.php"); // 轉到管理頁面
+		exit();
+	} else {
+		// 如果帳號密碼錯誤，顯示錯誤訊息
+		echo "<script>alert('帳號或密碼錯誤')</script>";
+	}
 }
 ?>
 

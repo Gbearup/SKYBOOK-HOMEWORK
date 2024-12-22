@@ -95,27 +95,83 @@
 
     <!-- 最新消息區 -->
     <div class="container">
-        <h3>NEWS</h3>
+        <h3 class="mt-4">最新消息</h3>
         <hr>
-        <?php
-        $div = 5;
-        $total = $News->count();
-        $pages = ceil($total / $div);
-        $now = $_GET['p'] ?? 1;
-        $start = ($now - 1) * $div;
-        $rows = $News->all(" limit $start,$div");
-        echo "<ol class='list-group'>";
 
-        foreach ($rows as $row) {
-            echo "<li class='list-group-item sswww'>";
-            echo mb_substr($row['text'], 0, 20);
-            echo "<span class='all' style='display:none'>" . $row['text'] . "</span>";
-            echo "</li>";
-        }
-        ?>
-        </ol>
-        <!-- 分頁按鈕仍然可以保留，但如果實現無頁面跳轉，則不需要 -->
+        <!-- 顯示資料 -->
+        <div class="card">
+            <div class="card-body" style="height: 150px; overflow: hidden;">
+                <?php
+                $div = 2; // 每頁顯示5條新聞
+                $total = $News->count(); // 總共有多少條新聞
+                $pages = ceil($total / $div); // 計算總頁數
+                $now = isset($_GET['p']) ? $_GET['p'] : 1; // 如果頁碼沒有設置，預設為第1頁
+                $start = ($now - 1) * $div; // 計算顯示的起始位置
+                $rows = $News->all("limit $start, $div"); // 從資料庫中查詢當前頁的新聞資料
+
+                if ($rows) {
+                    echo "<ul class='list-group'>";
+
+                    foreach ($rows as $row) {
+                        echo "<li class='list-group-item'>";
+                        // 直接顯示完整的新聞內容
+                        echo $row['text'];
+                        echo "</li>";
+                    }
+
+                    echo "</ul>";
+                } else {
+                    echo "<p>目前沒有更多的資料</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- 分頁控制 -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <!-- 上一頁 -->
+                <?php if ($now > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?p=<?php echo $now - 1; ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <!-- 分頁按鈕 -->
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?php echo ($i == $now) ? 'active' : ''; ?>">
+                        <a class="page-link" href="?p=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <!-- 下一頁 -->
+                <?php if ($now < $pages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?p=<?php echo $now + 1; ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </div>
+
+
+
 
 
 
