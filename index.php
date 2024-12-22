@@ -27,14 +27,20 @@
             font-size: 18px;
             /* Set the desired font size */
         }
-        body{
+
+        body {
             background-color: #FAF8F2;
         }
-        .bg-brown{
+
+        .bg-brown {
             background-color: rgb(184, 159, 139);
         }
     </style>
 </head>
+
+
+
+
 
 <body>
     <!-- 覆蓋層 (保留彈出功能) -->
@@ -75,7 +81,7 @@
 
 
                     <!-- 管理者登入圖標 -->
-                    <a href="front/login.php" class="text-decoration-none ml-3 d-flex text-dark mx-2" >
+                    <a href="login.php" class="text-decoration-none ml-3 d-flex text-dark mx-2">
                         <!-- 圖標 -->
                         <img src="./upload/flora.jpg" alt="管理者登入" style="width: 30px; height: 30px; margin-right: 8px; border-radius: 5px;">
 
@@ -87,6 +93,29 @@
 
 
 
+    <!-- 最新消息區 -->
+    <div class="container">
+        <h3>NEWS</h3>
+        <hr>
+        <?php
+        $div = 5;
+        $total = $News->count();
+        $pages = ceil($total / $div);
+        $now = $_GET['p'] ?? 1;
+        $start = ($now - 1) * $div;
+        $rows = $News->all(" limit $start,$div");
+        echo "<ol class='list-group'>";
+
+        foreach ($rows as $row) {
+            echo "<li class='list-group-item sswww'>";
+            echo mb_substr($row['text'], 0, 20);
+            echo "<span class='all' style='display:none'>" . $row['text'] . "</span>";
+            echo "</li>";
+        }
+        ?>
+        </ol>
+        <!-- 分頁按鈕仍然可以保留，但如果實現無頁面跳轉，則不需要 -->
+    </div>
 
 
 
@@ -241,36 +270,6 @@
         // 初始化顯示
         updateArrows();
     </script>
-
-
-
-
-
-
-
-
-    <!-- 最新消息區 -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <!-- 動態載入頁面 -->
-                <?php
-                $do = $_GET['do'] ?? 'main';
-                $file = "./front/{$do}.php";
-                if (file_exists($file)) {
-                    include $file;
-                } else {
-                    include "./front/main.php";
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
 
 
