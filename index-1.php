@@ -22,18 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
 
-    <style>
-        .col-md-8 p {
-            font-size: 18px;
-            /* Set the desired font size */
-        }
-        body{
-            background-color: #FAF8F2;
-        }
-        .bg-brown{
-            background-color: rgb(184, 159, 139);
-        }
-    </style>
+
 </head>
 
 <body>
@@ -47,8 +36,8 @@
 
     <!-- 主內容區域 -->
     <div class="container-fluid">
-        <!-- 標題區  #f5deb3-->
-        <nav class="navbar navbar-light" style="background-color:#C9B49F; position: relative;">
+        <!-- 標題區 -->
+        <nav class="navbar navbar-light" style="background-color: #f5deb3;">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="index.php" title="<?= $Title->find(['sh' => 1])['text']; ?>">
                     <!-- 圓形圖片區 -->
@@ -59,26 +48,13 @@
                 <!-- 社交媒體連結區 -->
                 <div class="ml-auto d-flex align-items-center">
                     <a href="https://www.facebook.com/profile.php?id=61556129413714" target="_blank" class="text-dark mx-2">
-                        <i class="fab fa-facebook-f" style="font-size: 2rem;"></i>
+                        <i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i>
                     </a>
                     <a href="https://www.instagram.com/huatsaofeifei/" target="_blank" class="text-dark mx-2">
-                        <i class="fab fa-instagram" style="font-size: 2rem;"></i>
+                        <i class="fab fa-instagram" style="font-size: 1.5rem;"></i>
                     </a>
                     <a href="https://line.me/R/ti/p/@287lkmtd" target="_blank" class="text-dark mx-2">
-                        <i class="fab fa-line" style="font-size: 2rem;"></i>
-                    </a>
-
-                    <!-- 訂購專區 -->
-                    <a href=" https://www.pinkoi.com/store/huatsaofeifei?utm_campaign=koc&utm_content=huatsaofeifei&utm_medium=ios_share&utm_source=Copy&utm_term=store" target="_blank" class="text-dark mx-2">
-                        <img src="./upload/pinkoi.png" alt="pinkoi" style="width: 30px; height: 30px;border-radius: 5px;">
-                    </a>
-
-
-                    <!-- 管理者登入圖標 -->
-                    <a href="front/login.php" class="text-decoration-none ml-3 d-flex text-dark mx-2" >
-                        <!-- 圖標 -->
-                        <img src="./upload/flora.jpg" alt="管理者登入" style="width: 30px; height: 30px; margin-right: 8px; border-radius: 5px;">
-
+                        <i class="fab fa-line" style="font-size: 1.5rem;"></i>
                     </a>
                 </div>
             </div>
@@ -86,10 +62,36 @@
     </div>
 
 
+    <!-- 選單區 -->
+    <div class="container-fluid">
+        <!-- 主選單區 (左邊) -->
+        <div class="row mb-4">
+            <div class="col-12 col-md-3">
+                <div id="menuput" class="dbor shadow-sm">
+                    <span class="t botli">主選單區</span>
+                    <?php
+                    $mains = $Menu->all(['sh' => 1, 'main_id' => 0]);
+                    foreach ($mains as $main) {
+                        echo "<div class='mainmu'>";
+                        echo "<a href='{$main['href']}' class='text-decoration-none'>" . $main['text'] . "</a>";
 
-
-
-
+                        echo "<div class='mw'>";
+                        if ($Menu->count(['main_id' => $main['id']]) > 0) {
+                            $subs = $Menu->all(['main_id' => $main['id']]);
+                            foreach ($subs as $sub) {
+                                echo "<div class='mainmu2'>";
+                                echo "<a href='{$sub['href']}' class='text-decoration-none'>" . $sub['text'] . "</a>";
+                                echo "</div>";
+                            }
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -133,16 +135,15 @@
 
             <!-- 右側頁面區，佔50%寬度 -->
             <div class="col-md-8 mt-5">
-                <p>「花草Feifei」是一家以花為主題的地方小小花店，透露著自然、清新的氛圍，擁有獨特的品牌形象</P>
-                <p>在繁忙的都市生活中，我們常常忽略了身邊最美麗的事物——花</P>
-                <p>創辦人Mandy希望能喚醒每個人心中那份在對自然的熱愛和生活的熱情，將這份情意融入到每一束甚至是一朵花，為顧客帶來一次次美好體驗</P>
-                <p>「花草Feifei」誠摯邀請您走進我們的花店，感受大自然的美好，一同尋找生活中的小確幸</P>
+                <p>「花草Feifei」是一家以花為主題的地方小小花店，透露著自然、清新的氛圍，擁有獨特的品牌形象，在繁忙的都市生活中，我們常常忽略了身邊最美麗的事物——花，創辦人Mandy希望能將品牌形象建構在對自然的熱愛和生活的熱情之上，將這份對於生活的熱情融入到每一束甚至是一朵花，為顧客帶來一次次美好經驗，「花草Feifei」誠摯邀請您走進我們的花店，感受大自然的美好，一同尋找生活中的小確幸。</P>
 
-                <p>我們的特色：</P>
-                <p>🌼自然與清新：店內陳設綠意盎然的綠植搭配Mandy定期上花市精選的新鮮花兒及從日本引進的永生花，營造出舒適愜意又帶有點溫柔浪漫的環境。</P>
-                <p>🌷獨特設計：花店的花束和花藝設計因為客製化所以都能保有特色，融合了法式風格和隨著四季變化之元素，展現出獨特的美感和品味，為您帶來獨一無二的視覺饗宴和感動。</P>
-                <p>🎋專業服務：「花草Feifei」注重對於每一位顧客的服務及感受，將花材的美麗和創意完美結合，為您打造出各種風格迥異的花藝作品，從花材選擇到搭配都會與消費者充分討論後製作，力求滿足每一份需求，讓顧客都能感受到溫暖和專業是Mandy希望能帶給大家的感受，無論是浪漫溫馨還是時尚簡約亦或是小清新，都能滿足您的需求。</P>
-                <p>🌻緊密連結：透過社交媒體平台，「花草Feifei」與顧客建立了密切的互動，分享花藝知識、生活美學和精彩瞬間，之後將透過不定期舉辦各類花藝相關主題活動，讓您更深入地了解花的魅力、感受花藝的樂趣，提升了品牌的曝光度和影響力。</P>
+                <p>品牌形象的關鍵特點包括：</P>
+
+                <p>自然與清新：「花草Feifei」以自然、清新的形象為品牌特色，店內陳設綠意盎然的綠植搭配Mandy定期上花市精選的新鮮花兒及從日本引進的永生花，營造出舒適愜意又帶有點溫柔浪漫的環境。</P>
+                <p>獨特設計：花店的花束和花藝設計因為客製化所以都能保有特色，融合了法式風格和隨著四季變化之元素，展現出獨特的美感和品味，為您帶來獨一無二的視覺饗宴和感動。</P>
+                <p>專業服務：「花草Feifei」注重對於每一位顧客的服務及感受，將花材的美麗和創意完美結合，為您打造出各種風格迥異的花藝作品，從花材選擇到搭配都會與消費者充分討論後製作，力求滿足每一份需求，讓顧客都能感受到溫暖和專業是Mandy希望能帶給大家的感受，無論是浪漫溫馨還是時尚簡約亦或是小清新，都能滿足您的需求。</P>
+                <p>社交媒體行銷：透過社交媒體平台，「花草Feifei」與顧客建立了密切的互動，分享花藝知識、生活美學和精彩瞬間，之後將透過不定期舉辦各類花藝相關主題活動，讓您更深入地了解花的魅力、感受花藝的樂趣，提升了品牌的曝光度和影響力。</P>
+                <p>總的來說，「花草Feifei」以其獨特的花店形象和專業服務，贏得顧客的喜愛和信任，成為了一個極具吸引力的品牌。</P>
             </div>
         </div>
     </div>
@@ -152,7 +153,7 @@
 
     <div class="container-fluid">
         <div class="card mt-4 shadow-sm">
-            <div class="card-header text-black" style="background-color: #C9B49F;">
+            <div class="card-header text-black" style="background-color: #f5deb3;">
                 花藝商品展示區
             </div>
             <div class="card-body">
@@ -274,7 +275,7 @@
 
 
 
-    <footer class=" text-black py-3 mt-4 bg-brown ">
+    <footer class="alert alert-info text-black py-3 mt-4">
         <div class="container d-flex justify-content-between align-items-center">
             <!-- 進站總人數統計 -->
             <div>

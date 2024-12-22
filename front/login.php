@@ -1,33 +1,103 @@
-<?php 
+<!DOCTYPE html>
+<html lang="zh-Hant">
 
-if(isset($_SESSION['login'])){
-	to("admin.php");
-	exit();	
-}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>管理員登入</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			background-color: #f4f7fc;
+			font-family: 'Arial', sans-serif;
+			background-image: url(../upload/flora.jpg);
+		}
 
-if(isset($_POST['acc'])){
-	$row=$Admin->find(['acc'=>$_POST['acc'],'pw'=>$_POST['ps']]);
+		.login-container {
+			max-width: 500px;
+			margin-top: 80px;
+		}
 
-	if(!empty($row)){
-		$_SESSION['login']=1;
-		to("admin.php");
-	}else{
-		echo "<script>alert('帳號或密碼錯誤')</script>";
-	}
+		.card {
+			border-radius: 15px;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+		}
 
-}
-?>
+		.card-header {
+			background-color: #f5deb3;
+			color: white;
+			text-align: center;
+			border-radius: 15px 15px 0 0;
+			padding: 25px;
+		}
 
-<div class="di"
-	style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
-	<marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
-	</marquee>
-	<div style="height:32px; display:block;"></div>
-	<!--正中央-->
-	<form method="post" action="?do=login" >
-		<p class="t botli">管理員登入區</p>
-		<p class="cent">帳號 ： <input name="acc" autofocus="" type="text"></p>
-		<p class="cent">密碼 ： <input name="ps" type="password"></p>
-		<p class="cent"><input value="送出" type="submit"><input type="reset" value="清除"></p>
-	</form>
-</div>
+		.btn-primary {
+			background-color: #f5deb3;
+			border-color: #f5deb3;
+			padding: 12px 18px;
+		}
+
+		.btn-primary:hover {
+			background-color: #8B4513;
+			border-color: #8B4513;
+		}
+
+		.form-control {
+			border-radius: 10px;
+			padding: 12px;
+		}
+
+		.alert {
+			border-radius: 10px;
+			background-color: #ffcccc;
+			color: #d8000c;
+		}
+
+		.forgot-password {
+			text-align: center;
+			font-size: 16px;
+			margin-top: 15px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container d-flex justify-content-center">
+		<div class="login-container">
+			<div class="card">
+				<div class="card-header">
+					<h4>管理員登入</h4>
+				</div>
+				<div class="card-body">
+					<form method="post" action="?do=login">
+						<div class="mb-3">
+							<label for="acc" class="form-label">帳號</label>
+							<input name="acc" id="acc" type="text" class="form-control" placeholder="請輸入帳號" autofocus required>
+						</div>
+						<div class="mb-3">
+							<label for="ps" class="form-label">密碼</label>
+							<input name="ps" id="ps" type="password" class="form-control" placeholder="請輸入密碼" required>
+						</div>
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary">登入</button>
+							<button type="reset" class="btn btn-secondary">清除</button>
+						</div>
+					</form>
+					<!-- 顯示錯誤訊息 -->
+					<?php if (!empty($row) && isset($_POST['acc']) && isset($_POST['ps'])): ?>
+						<div class="alert mt-3">帳號或密碼錯誤</div>
+					<?php endif; ?>
+					<div class="forgot-password">
+						<a href="#">忘記密碼?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
