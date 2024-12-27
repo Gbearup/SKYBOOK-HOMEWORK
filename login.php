@@ -14,6 +14,8 @@ if (isset($_POST['acc'])) { // 如果有提交帳號
 	if (!empty($row)) {
 		// 登入成功，設定 session 來標記已登入
 		$_SESSION['login'] = 1;
+		$_SESSION['user_id'] = $row['id']; // 可以儲存用戶 ID 在 session 中
+        $_SESSION['username'] = $row['acc']; // 儲存用戶名稱在 session 中
 		header("Location: admin.php"); // 轉到管理頁面
 		exit();
 	} else {
