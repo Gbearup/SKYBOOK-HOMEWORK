@@ -7,7 +7,7 @@
         <form method="post" action="./api/edit.php">
             <table width="100%" class='cent'>
                 <tbody>
-                    <tr class="yel">
+                <tr class="cent" style="background:#FF85C1">
                         <td width="70%">花藝商品展示照片</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>

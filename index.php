@@ -95,7 +95,7 @@
 
     <!-- 最新消息區 -->
     <div class="container">
-        <h3 class="mt-4">最新消息</h3>
+        <h3 class="mt-4">新鮮事</h3>
         <hr>
 
         <!-- 顯示資料 -->

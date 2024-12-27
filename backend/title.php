@@ -7,7 +7,7 @@
         <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
-                    <tr class="yel">
+                <tr class="cent" style="background:#FF85C1">
                         <td width="45%">網站標題</td>
                         <td width="23%">替代文字</td>
                         <td width="7%">顯示</td>
@@ -19,16 +19,16 @@
                     foreach($rows as $row){
                     ?>
                     <tr>
-                        <td>
+                        <td class="cent">
                             <img src="./upload/<?=$row['img'];?>" style="width:300px;height:30px;">    
                         </td>
-                        <td>
+                        <td class="cent">
                             <input type="text" name="text[]" value="<?=$row['text'];?>">    
                         </td>
-                        <td>
+                        <td class="cent">
                             <input type="radio" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
                         </td>
-                        <td>
+                        <td class="cent">
                             <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
                         </td>
                         <td>

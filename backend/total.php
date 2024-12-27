@@ -7,7 +7,7 @@
         <form method="post" action="./api/update_data.php">
             <table width="50%" style="margin:auto">
                 <tbody>
-                    <tr class="yel">
+                <tr class="cent" style="background:#FF85C1">
                         <td width="50%">進站總人數：</td>
                         <td width="50%"><input type="number" name="total" value="<?=$Total->find(1)['total'];?>"></td>
                     </tr>

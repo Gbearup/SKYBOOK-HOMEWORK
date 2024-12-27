@@ -1,6 +1,10 @@
 <?php
 include_once "api/db.php"; // 引入資料庫連線檔案
 
+if(isset($_SESSION['login'])){
+	to("admin.php");
+	exit();	
+}
 
 if (isset($_POST['acc'])) { // 如果有提交帳號
 	// 查詢帳號和密碼是否正確

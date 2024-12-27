@@ -7,7 +7,7 @@
         <form method="post" action="./api/update_data.php">
             <table width="50%" style="margin:auto">
                 <tbody>
-                    <tr class="yel">
+                <tr class="cent" style="background:#FF85C1">
                         <td width="50%">頁尾版權資料：</td>
                         <td width="50%"><input type="text" name="bottom" value="<?=$Bottom->find(1)['bottom'];?>"></td>
                     </tr>

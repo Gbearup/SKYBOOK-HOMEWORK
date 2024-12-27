@@ -21,6 +21,11 @@ if (!isset($_SESSION['login'])) {
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
+    <style>
+        body{
+            background:#FAF8F2;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,9 +61,9 @@ if (!isset($_SESSION['login'])) {
                     <li class="nav-item">
                         <a class="nav-link active" href="?do=title">網站標題管理</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="?do=ad">動態文字廣告管理</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="?do=mvim">形象圖片管理</a>
                     </li>
@@ -72,14 +77,14 @@ if (!isset($_SESSION['login'])) {
                         <a class="nav-link" href="?do=bottom">頁尾版權資料管理</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?do=news">最新消息資料管理</a>
+                        <a class="nav-link" href="?do=news">新鮮事管理</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?do=admin">管理者帳號管理</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="?do=menu">選單管理</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 

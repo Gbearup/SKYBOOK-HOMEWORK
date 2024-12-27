@@ -3,12 +3,12 @@
     <!--正中央-->
     <?php include_once "logout.php";?>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">最新消息資料內容管理</p>
+        <p class="t cent botli">新鮮事內容管理</p>
         <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
-                    <tr class="yel">
-                        <td width="80%">最新消息資料內容</td>
+                    <tr class="cent" style="background:#FF85C1">
+                        <td width="80%">資料內容</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                     </tr>
@@ -27,10 +27,10 @@
                         <td>
                             <textarea name="text[]"  style="width:95%;height:60px;"><?=$row['text'];?></textarea>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
                         </td>
                         <input type="hidden" name="id[]" value="<?=$row['id'];?>">
