@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-12-27 13:50:22
+-- 產生時間： 2024-12-28 15:09:09
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `acc`, `pw`, `sh`) VALUES
 (1, 'admin', '1234', 0),
-(2, 'root', '5678', 0);
+(2, 'mandy', '1234', 0),
+(4, 'test', '1234', 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE `bottom` (
 --
 
 INSERT INTO `bottom` (`id`, `bottom`) VALUES
-(1, 'YYY2024版權所有');
+(1, '202412版權所有');
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,7 @@ CREATE TABLE `news` (
 
 INSERT INTO `news` (`id`, `img`, `text`, `sh`) VALUES
 (1, '', '手作聖誕花圈工作坊 \r\n費用：1880元（含精美提袋、手作材料、工具及飲品一杯）\r\n✨上課時間（製作過程約2小時）\r\n12月14日（星期六）13:30時\r\n12月20日（星期五）13:30時\r\n✨ 地點：\r\n 光點未來Cafe（文化三路一段191巷32號）\r\n (距離A9捷運站約5分鐘，附近停車方便）', 1),
-(2, '', '12月21日 這是一束送給畢業生的花禮，訂花小姐姐交待希望能典雅一點別太粉但又希望有一點粉～一次過關', 1),
+(2, '', '12月21日 一束送給畢業生的花禮，訂花小姐姐交待希望能典雅一點別太粉但又希望有一點粉～一次過關', 1),
 (3, '', '12月 6日 《花????小知識-葉牡丹》\r\n一直覺得葉牡丹有種很接地氣的高級感，很難想像跟我們常見的甘籃真的就是同種的觀賞植物（不能吃喔！），根部生長旺盛，莖部端縮粗壯，高莖品種與多年生栽培者莖較高且略有木質化現象，葉片蓮座狀密集排列，葉圓形或橢圓形，因冬季低溫使心部葉片變色，呈現紫、白、粉紅等色彩', 1),
 (4, '', '12月2日 灰色，一個屬於安靜低調的顏色，在包裝材料裡面常常被拿來襯托其它人，但有天自己當了主角，各種不同質地、色調的灰互相交錯也是很有高級感，僅以簡單的白玫瑰、一些常見的綠葉，外搭灰色系包裝，氣勢並不輸我們常見的紅粉紫包裝，我想這束訂花的主人一定對色彩有一定的敏感度，才會大膽的直接指定就是要這樣的花禮～', 1),
 (5, '', '11月26日 《永生手提聖誕球》\r\n想改變一下空間感受聖誕節氣息嗎？\r\n或是 想改變一下以往的聖誕節裝飾呢？\r\n這款永生手提聖誕球或許也是個不錯的選擇喔～', 1),
@@ -208,7 +209,9 @@ CREATE TABLE `titles` (
 --
 
 INSERT INTO `titles` (`id`, `img`, `text`, `sh`) VALUES
-(10, '0.logo.jpg', 'logo', 1);
+(10, '0.logo.jpg', 'logo', 1),
+(12, 'logo-1.jpg', 'logo-1', 0),
+(14, 'logo-3.jpg', 'logo-2', 0);
 
 -- --------------------------------------------------------
 
@@ -226,7 +229,7 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `total`) VALUES
-(1, 10001);
+(1, 10007);
 
 --
 -- 已傾印資料表的索引
@@ -294,7 +297,7 @@ ALTER TABLE `total`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ads`
@@ -324,7 +327,7 @@ ALTER TABLE `menus`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mvims`
 --
 ALTER TABLE `mvims`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
@@ -336,7 +339,7 @@ ALTER TABLE `news`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `titles`
 --
 ALTER TABLE `titles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `total`
