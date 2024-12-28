@@ -17,13 +17,32 @@ if (!isset($_SESSION['login'])) {
     <!-- 引入 Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJxv4s3QK+7b5k3yW2pE3oY5O92F5f5a0fHj9aVe2kEozFO0ggk3dyvB4jZ9" crossorigin="anonymous">
 
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
     <!-- 自定義 CSS -->
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
     <style>
-        body{
-            background:#FAF8F2;
+        body {
+            background: #FAF8F2;
+        }
+
+        .nav-link.active {
+            background-color: #FF85C1 !important;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: black !important;
+            /* 使文字顏色變成黑色 */
         }
     </style>
 </head>
@@ -38,38 +57,41 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 
-    <!-- 主內容區域 -->
+    <!-- 標題區域 -->
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6 text-center">
+            <div class="col-12 col-md-4 d-flex align-items-center text-center">
                 <a title="<?= $Title->find(['sh' => 1])['text']; ?>" href="index.php">
-                    <div class="ti" style="height: 180px; background: url('./upload/<?= $Title->find(['sh' => 1])['img']; ?>') center/contain no-repeat;">
-                        <!-- 這裡可以加上文字或其他內容 -->
-                        
-                    </div>
+                    <div style="width: 180px; height: 180px; background: url('./upload/<?= $Title->find(['sh' => 1])['img']; ?>') center/cover no-repeat; border-radius: 50%;"></div>
                 </a>
+                <h2 class="mb-4 ml-3 pt-3 pt-md-5" style="padding-top: 25px;">花草FeiFei 後台管理選單</h2>
+
             </div>
         </div>
+    </div>
 
+
+
+    <!-- 選單區域 -->
+    <div class="container-fluid">
         <div class="row">
             <div class="col-2"></div>
-            <div class="col-9">
+            <div class="col-8">
 
-                <h2 class="mb-4 ">後台管理選單</h2>
                 <!-- 使用 nav-tabs 類別來顯示水平選單 -->
                 <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="?do=title">網站標題管理</a>
-                    </li>
                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="?do=ad">動態文字廣告管理</a>
-                    </li> -->
+                        <a class="nav-link active" href="?do=title">網站標題管理</a>
+                    </li> 
                     <li class="nav-item">
+                        <a class="nav-link" href="?do=ad">動態文字廣告管理</a>
+                    </li> 
+                     <li class="nav-item">
                         <a class="nav-link" href="?do=mvim">形象圖片管理</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?do=image">花藝商品資料管理</a>
-                    </li>
+                    </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="?do=total">進站總人數管理</a>
                     </li>
@@ -81,14 +103,55 @@ if (!isset($_SESSION['login'])) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?do=admin">管理者帳號管理</a>
-                    </li>
-                    <!-- <li class="nav-item">
+                    </li> 
+                    <li class="nav-item">
                         <a class="nav-link" href="?do=menu">選單管理</a>
                     </li> -->
+
+                    <!-- 設置默認的 active 標籤
+                    $activeTab = $_GET['do'] ?? 'title'; // 默認選擇 'title' 作為活動頁
+                    ?> -->
+                    <?php
+                    $activeTab = isset($_GET['do']) ? $_GET['do'] : 'default'; // 如果沒設置，則使用預設值
+                    ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'title') ? 'active' : ''; ?>" href="?do=title">網站標題管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'mvim') ? 'active' : ''; ?>" href="?do=mvim">形象圖片管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'image') ? 'active' : ''; ?>" href="?do=image">花藝商品資料管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'total') ? 'active' : ''; ?>" href="?do=total">進站總人數管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'bottom') ? 'active' : ''; ?>" href="?do=bottom">頁尾版權資料管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'news') ? 'active' : ''; ?>" href="?do=news">新鮮事管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'admin') ? 'active' : ''; ?>" href="?do=admin">管理者帳號管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <button onclick="document.cookie='user='; location.replace('./api/logout.php')"
+                            class="btn btn-outline-danger w-100" style="height: 50px;">
+                            管理登出
+                        </button>
+                    </li>
+
+
                 </ul>
             </div>
+        </div>
+    </div>
 
-            <!-- 主要內容區域 -->
+    <!-- 主要內容區域 -->
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-2"></div>
             <div class="col-10">
                 <!-- 動態載入頁面 -->
@@ -104,10 +167,12 @@ if (!isset($_SESSION['login'])) {
             </div>
         </div>
 
-        <!-- 頁尾 -->
-        <footer class="alert alert-info text-center py-3 mt-4">
-            <span><?= $Bottom->find(1)['bottom']; ?></span>
-        </footer>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="alert alert-info text-center py-3 mt-4">
+        <span><?= $Bottom->find(1)['bottom']; ?></span>
+    </footer>
     </div>
 
 
