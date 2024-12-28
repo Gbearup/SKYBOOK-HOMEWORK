@@ -1,13 +1,12 @@
-<div class="di" 
-    style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+<div style="height:65vh; border:#D3D3D3 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
     <!--正中央-->
-    <?php include_once "logout.php"; ?>
-    <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">管理者帳號管理</p>
+
+    <div style="width:99%; height:100%; margin:auto; overflow:auto;">
+        <!-- <p class="t cent botli">管理者帳號管理</p> -->
         <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
-                <tr class="cent" style="background:#FF85C1">
+                    <tr class="cent" style="background:#FF85C1">
                         <td width="45%">帳號</td>
                         <td width="45%">密碼</td>
                         <td width="10%">刪除</td>

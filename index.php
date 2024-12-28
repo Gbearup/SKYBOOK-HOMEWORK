@@ -83,7 +83,7 @@
                     <!-- 管理者登入圖標 -->
                     <a href="login.php" class="text-decoration-none ml-3 d-flex text-dark mx-2">
                         <!-- 圖標 -->
-                        <img src="./upload/flora.jpg" alt="管理者登入" style="width: 30px; height: 30px; margin-right: 8px; border-radius: 5px;">
+                        <img src="./upload/flora.jpg" alt="管理者登入" title="管理者登入" style="width: 30px; height: 30px; margin-right: 8px; border-radius: 5px;">
 
                     </a>
                 </div>
