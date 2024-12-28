@@ -1,20 +1,19 @@
-<div class="di"
-    style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+<div style="height:65vh; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
     <!--正中央-->
-    <!-- <?php include_once "logout.php";?> -->
-    <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
+    
+    <div style="width:99%; height:100%; margin:auto; overflow:auto; ">
         <p class="t cent botli">新鮮事內容管理</p>
         <form method="post" action="./api/edit.php">
             <table width="100%">
                 <tbody>
                     <tr class="cent" style="background:#FF85C1">
-                        <td width="80%">資料內容</td>
+                        <td width="80%">新鮮事資料內容</td>
                         <td width="10%">顯示</td>
                         <td width="10%">刪除</td>
                     </tr>
                     <?php
 
-                    $div=4;
+                    $div=3;
                     $total=$News->count();
                     $pages=ceil($total/$div);
                     $now=$_GET['p']??1;
@@ -25,7 +24,7 @@
                     ?>
                     <tr>
                         <td>
-                            <textarea name="text[]"  style="width:95%;height:60px;"><?=$row['text'];?></textarea>
+                            <textarea name="text[]"  style="width:95%;height:120px;"><?=$row['text'];?></textarea>
                         </td>
                         <td style="text-align: center;">
                             <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
@@ -60,21 +59,25 @@
 
             ?>
             </div>
-            <table style="margin-top:40px; width:70%;">
-                <tbody>
-                    <tr>
-                        <td width="200px">
-                            <input type="button"
-                                onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?=$do;?>.php?table=<?=$do;?>&#39;)"
-                                value="新增最新消息資料"></td>
-                        <td class="cent">
-                            <input type="hidden" name="table" value="<?=$do;?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="container mt-5">
+                <table class=" w-75 mx-auto">
+                    <tbody>
+                        <tr>
+                            <td class="w-25">
+                                <button class="btn btn-custom btn-block"
+                                    onclick="op('#cover', '#cvr', './modal/<?= $do; ?>.php?table=<?= $do; ?>')">
+                                    新增新鮮事資料
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <input type="hidden" name="table" value="<?= $do; ?>">
+                                <button type="submit" class="btn btn-custom">修改確定</button>
+                                <button type="reset" class="btn btn-custom">重置</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </form>
     </div>

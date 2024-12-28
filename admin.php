@@ -44,6 +44,29 @@ if (!isset($_SESSION['login'])) {
             color: black !important;
             /* 使文字顏色變成黑色 */
         }
+
+        /* 按鈕正常狀態 */
+        .btn-custom {
+            background-color:#F8D7E8;
+            color: black;
+            border: none;
+            transition: background-color 0.3s, color 0.3s;
+            /* 增加平滑過渡效果 */
+        }
+
+        /* 當按鈕被 hover 時 */
+        .btn-custom:hover {
+            background-color:rgb(6, 179, 185);
+            /* 更深的顏色 */
+            color: white;
+            /* 文字顏色變為白色 */
+        }
+
+        .alert-gray{
+            background-color:#E9B8CE;
+            color: #4A4A4A;
+
+        }
     </style>
 </head>
 
@@ -80,43 +103,16 @@ if (!isset($_SESSION['login'])) {
 
                 <!-- 使用 nav-tabs 類別來顯示水平選單 -->
                 <ul class="nav nav-tabs">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" href="?do=title">網站標題管理</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=ad">動態文字廣告管理</a>
-                    </li> 
-                     <li class="nav-item">
-                        <a class="nav-link" href="?do=mvim">形象圖片管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=image">花藝商品資料管理</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=total">進站總人數管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=bottom">頁尾版權資料管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=news">新鮮事管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=admin">管理者帳號管理</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link" href="?do=menu">選單管理</a>
-                    </li> -->
 
-                    <!-- 設置默認的 active 標籤
-                    $activeTab = $_GET['do'] ?? 'title'; // 默認選擇 'title' 作為活動頁
-                    ?> -->
                     <?php
                     $activeTab = isset($_GET['do']) ? $_GET['do'] : 'default'; // 如果沒設置，則使用預設值
                     ?>
 
                     <li class="nav-item">
-                        <a class="nav-link <?= ($activeTab == 'title') ? 'active' : ''; ?>" href="?do=title">網站標題管理</a>
+                        <a class="nav-link <?= ($activeTab == 'title') ? 'active' : ''; ?>" href="?do=title">網站LOGO管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($activeTab == 'news') ? 'active' : ''; ?>" href="?do=news">新鮮事管理</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($activeTab == 'mvim') ? 'active' : ''; ?>" href="?do=mvim">形象圖片管理</a>
@@ -129,9 +125,6 @@ if (!isset($_SESSION['login'])) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($activeTab == 'bottom') ? 'active' : ''; ?>" href="?do=bottom">頁尾版權資料管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= ($activeTab == 'news') ? 'active' : ''; ?>" href="?do=news">新鮮事管理</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($activeTab == 'admin') ? 'active' : ''; ?>" href="?do=admin">管理者帳號管理</a>
@@ -150,7 +143,7 @@ if (!isset($_SESSION['login'])) {
     </div>
 
     <!-- 主要內容區域 -->
-    <div class="container-fluid">
+    <div class="container-fluid" style="height:65vh" ;>
         <div class="row">
             <div class="col-2"></div>
             <div class="col-10">
@@ -170,10 +163,12 @@ if (!isset($_SESSION['login'])) {
     </div>
 
     <!-- 頁尾 -->
-    <footer class="alert alert-info text-center py-3 mt-4">
-        <span><?= $Bottom->find(1)['bottom']; ?></span>
-    </footer>
+    <div class="container-fluid">
+        <footer class="alert alert-gray text-center py-3 mt-4">
+            <span><?= $Bottom->find(1)['bottom']; ?></span>
+        </footer>
     </div>
+
 
 
     <!-- 引入 Bootstrap 5 的 JS -->
