@@ -34,23 +34,29 @@
                     ?>
                 </tbody>
             </table>
+
+
+
             <table style="margin-top:40px; width:70%;">
                 <tbody>
                     <tr>
                         <td width="200px">
-                            <input type="button"
+                            <input type="button" class="btn btn-custom btn-block"
                                 onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?= $do; ?>.php?table=<?= $do; ?>&#39;)"
                                 value="新增管理者帳號">
                         </td>
                         <td class="cent">
                             <input type="hidden" name="table" value="<?= $do; ?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
+                            <input type="submit" value="修改確定" class="btn btn-custom btn-block">
+                            <input type="reset" value="重置" class="btn btn-custom btn-block">
                         </td>
                     </tr>
                 </tbody>
             </table>
 
+
+
+            
         </form>
     </div>
 </div>

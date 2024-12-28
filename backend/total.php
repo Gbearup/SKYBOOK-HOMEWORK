@@ -4,22 +4,29 @@
     <div style="width:99%; height:100%; margin:auto; overflow:auto;">
         <!-- <p class="t cent botli">進站總人數管理</p> -->
         <form method="post" action="./api/update_data.php">
-            <table width="50%" style="margin:auto">
+            <table width="100%" style="margin:auto">
                 <tbody>
                     <tr class="cent" style="background:#FF85C1">
-                        <td width="50%">進站總人數：</td>
-                        <td width="50%"><input type="number" name="total" value="<?= $Total->find(1)['total']; ?>"></td>
+                        <td width="100%">
+                            進站總人數
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; justify-content: center; margin-top:5vh;">
+                            <input type="number" name="total" value="<?= $Total->find(1)['total']; ?>">
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <table style="margin-top:40px; width:70%;">
+
+
+            <table style="margin-top:40px; width:100%;">
                 <tbody>
                     <tr>
-                        <td width="200px">
-                        <td class="cent">
+                        <td class="cent" width="200px">
                             <input type="hidden" name="table" value="<?= $do; ?>">
-                            <input type="submit" value="修改確定">
-                            <input type="reset" value="重置">
+                            <input type="submit" value="修改確定" class="btn btn-custom btn-block">
+                            <input type="reset" value="重置" class="btn btn-custom btn-block">
                         </td>
                     </tr>
                 </tbody>

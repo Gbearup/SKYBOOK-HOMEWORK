@@ -99,13 +99,13 @@ if (!isset($_SESSION['login'])) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-2"></div>
-            <div class="col-9">
+            <div class="col-8">
 
 
                 <!-- 使用 nav-tabs 類別來顯示水平選單 -->
                 <ul class="nav nav-tabs">
                     <?php
-                    $activeTab = isset($_GET['do']) ? $_GET['do'] : 'default'; // 如果沒設置，則使用預設值
+                    $activeTab = isset($_GET['do']) ? $_GET['do'] : 'title'; // 如果沒設置，則使用預設值
                     ?>
 
                     <li class="nav-item">
