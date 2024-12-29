@@ -35,27 +35,6 @@
         .bg-brown {
             background-color: rgb(184, 159, 139);
         }
-
-
-       /* 預設情況下顯示兩條新聞（桌面端） */
-        .news-item {
-            display: block;
-        }
-
-        /* 手機端顯示一條新聞 */
-        @media (max-width: 768px) {
-            .news-list {
-                height: 150px;
-                /* 保持原來的高度限制 */
-                overflow: hidden;
-                /* 隱藏超出範圍的內容 */
-            }
-
-            .news-item:nth-child(n+2) {
-                display: none;
-                /* 隱藏第二條及以後的新聞 */
-            }
-        }
     </style>
 </head>
 
@@ -123,16 +102,7 @@
         <div class="card">
             <div class="card-body" style="height: 150px; overflow: hidden;">
                 <?php
-                // 根據螢幕大小來決定每頁顯示的條數
-                // $div = 2; // 預設顯示2條（桌面版）
-
-                // if (isset($_GET['p']) && $_GET['p'] == 'mobile') {
-                //     $div = 1; // 手機版顯示1條
-                // }
-
-
-                $div = (isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) ? 1 : 2;
-
+                $div = 2; // 每頁顯示5條新聞
                 $total = $News->count(); // 總共有多少條新聞
                 $pages = ceil($total / $div); // 計算總頁數
                 $now = isset($_GET['p']) ? $_GET['p'] : 1; // 如果頁碼沒有設置，預設為第1頁
@@ -140,10 +110,10 @@
                 $rows = $News->all("limit $start, $div"); // 從資料庫中查詢當前頁的新聞資料
 
                 if ($rows) {
-                    echo "<ul class='list-group news-list'>"; // 加入 news-list 類別
+                    echo "<ul class='list-group'>";
 
                     foreach ($rows as $row) {
-                        echo "<li class='list-group-item news-item'>";
+                        echo "<li class='list-group-item'>";
                         // 直接顯示完整的新聞內容
                         echo $row['text'];
                         echo "</li>";
