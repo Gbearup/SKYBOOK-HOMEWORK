@@ -74,8 +74,8 @@
 
     <!-- 主內容區域 -->
     <div class="container-fluid">
-        <!-- 標題區  #f5deb3-->
-        <nav class="navbar navbar-light" style="background-color:#C9B49F; position: relative;">
+        <!-- 標題區  background-color:#C9B49F-->
+        <nav class="navbar navbar-light" style="background-image:url(./headImage.jpg); position: relative; background-position: center center;background-size: cover;">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="index.php" title="<?= $Title->find(['sh' => 1])['text']; ?>">
                     <!-- 圓形圖片區 -->
